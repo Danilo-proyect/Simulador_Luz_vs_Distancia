@@ -1,0 +1,86 @@
+/* =========================================
+   1. ESTILOS GLOBALES
+   ========================================= */
+:root {
+    --bg-deep: #080b15;
+    --gradient-aurora: linear-gradient(135deg, #101729 0%, #0c1c3f 50%, #1a233a 100%);
+    --color-main: #00f2ff; 
+    --color-sec: #9aff00; 
+    --text-main: #f5f5f5;
+    --text-muted: #94a3b8;
+    --border-pro: 1px solid rgba(255,255,255,0.08);
+}
+
+body {
+    background-color: var(--bg-deep);
+    background-image: var(--gradient-aurora);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 30px;
+    overflow-x: hidden;
+}
+
+h1, h2 { margin-top: 0; }
+.main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; max-width: 1200px; margin: auto; }
+
+/* =========================================
+   2. SIMULADOR VISUAL
+   ========================================= */
+.visual-sim {
+    grid-column: 1 / -1;
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px; padding: 30px;
+    height: 250px;
+    border: var(--border-pro);
+    display: flex; align-items: center;
+}
+
+.lamp-area { width: 100px; display: flex; justify-content: center; z-index: 2; position: relative; }
+.lamp { 
+    width: 40px; height: 40px; background: #fff; border-radius: 50%; 
+    box-shadow: 0 0 40px 10px #fff; transition: box-shadow 0.3s ease; 
+}
+
+.track-area { flex-grow: 1; position: relative; height: 100%; margin-right: 40px; }
+.ruler { position: absolute; bottom: 30px; left: 0; right: 0; height: 2px; background: #334155; }
+.marker { position: absolute; bottom: 5px; transform: translateX(-50%); color: var(--text-muted); font-size: 13px; font-family: monospace; }
+.marker::before { content: ''; position: absolute; top: -15px; left: 50%; width: 2px; height: 10px; background: #475569; }
+
+.smartphone {
+    position: absolute; bottom: 40px;
+    transform: translateX(-50%);
+    width: 55px; height: 100px; 
+    background: linear-gradient(135deg, #222, #111);
+    border: 2px solid #444; border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--color-main); font-size: 11px; text-align: center;
+    z-index: 3; box-shadow: -10px 0 20px rgba(0,0,0,0.5);
+    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* =========================================
+   3. TARJETAS Y TABLAS
+   ========================================= */
+.card { background: rgba(17, 24, 39, 0.7); border-radius: 18px; padding: 25px; border: var(--border-pro); }
+
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th { text-align: left; padding: 12px; color: var(--color-sec); border-bottom: 2px solid rgba(154,255,0,0.2); }
+td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+tbody tr { cursor: pointer; transition: background 0.3s ease; border-left: 4px solid transparent; }
+tbody tr:hover { background: rgba(0, 242, 255, 0.05); }
+.active-row { background: rgba(154, 255, 0, 0.1) !important; border-left: 4px solid var(--color-sec) !important; }
+
+input {
+    width: 80%; background: #080b15; border: 1px solid rgba(0,242,255,0.2);
+    color: white; padding: 8px; border-radius: 6px; text-align: center; 
+    font-family: monospace; font-size: 15px; pointer-events: none;
+}
+tr:hover input, .active-row input { pointer-events: auto; }
+input:focus { border-color: var(--color-main); outline: none; }
+
+.results-box { margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.3); border-left: 4px solid var(--color-main); border-radius: 8px; }
+.chart-container { height: 350px; width: 100%; margin-top: 15px; }
+
+@media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } .visual-sim { overflow-x: auto; } }

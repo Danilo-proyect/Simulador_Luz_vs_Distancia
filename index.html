@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Intensidad Lumínica</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header style="text-align: center; margin-bottom: 30px;">
+        <h1>Simulador Interactivo: <span style="color:#00f2ff">Luz vs. Distancia</span></h1>
+        <p style="color: #94a3b8;">Haz clic en cualquier fila para observar el desplazamiento y calcular el modelo lineal.</p>
+    </header>
+
+    <div class="main-grid">
+        
+        <div class="visual-sim">
+            <div class="lamp-area">
+                <div class="lamp" id="lampGlow"></div>
+            </div>
+            
+            <div class="track-area">
+                <div class="ruler"></div>
+                
+                <div class="marker" style="left: 16.66%;">0.5m</div>
+                <div class="marker" style="left: 33.33%;">1.0m</div>
+                <div class="marker" style="left: 50.00%;">1.5m</div>
+                <div class="marker" style="left: 66.66%;">2.0m</div>
+                <div class="marker" style="left: 83.33%;">2.5m</div>
+
+                <div class="smartphone" id="phoneSim" style="left: 16.66%;">
+                    <i class="fa-solid fa-mobile-screen" style="font-size: 18px;"></i>
+                    <div id="phoneReading" style="margin-top: 5px; font-weight: bold; font-size: 14px;">---</div>
+                    <div>LUX</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-table"></i> Datos Experimentales</h2>
+            <table>
+                <thead>
+                    <tr><th>Punto</th><th>Distancia (m)</th><th>Intensidad (Lux)</th></tr>
+                </thead>
+                <tbody id="dataTable">
+                    <tr onclick="selectRow(0)" class="active-row"><td>1</td><td><input type="number" step="0.1" value="0.5" class="dist-input"></td><td><input type="number" value="346" class="lux-input"></td></tr>
+                    <tr onclick="selectRow(1)"><td>2</td><td><input type="number" step="0.1" value="1.0" class="dist-input"></td><td><input type="number" value="226" class="lux-input"></td></tr>
+                    <tr onclick="selectRow(2)"><td>3</td><td><input type="number" step="0.1" value="1.5" class="dist-input"></td><td><input type="number" value="144" class="lux-input"></td></tr>
+                    <tr onclick="selectRow(3)"><td>4</td><td><input type="number" step="0.1" value="2.0" class="dist-input"></td><td><input type="number" value="85" class="lux-input"></td></tr>
+                    <tr onclick="selectRow(4)"><td>5</td><td><input type="number" step="0.1" value="2.5" class="dist-input"></td><td><input type="number" value="60" class="lux-input"></td></tr>
+                </tbody>
+            </table>
+
+            <div class="results-box">
+                <div id="equationText" style="font-family: monospace; font-size: 20px; color: white;">Calculando...</div>
+                <div id="r2Text" style="color: #9aff00; font-weight: bold; font-size: 16px; margin-top: 5px;"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-chart-line"></i> Regresión Lineal</h2>
+            <div class="chart-container">
+                <canvas id="regressionChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
